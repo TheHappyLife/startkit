@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+}
+
+.horizontal_divider {
+  border-top: 1px solid #ffffff29;
+  width: 100%;
+}
+.vertical_divider {
+  border-right: 1px solid #ffffff29;
+  height: 100%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.hide_scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
