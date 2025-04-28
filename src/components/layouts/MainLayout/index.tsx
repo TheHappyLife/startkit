@@ -1,6 +1,5 @@
 "use client";
 import cn from "@/utils/cn";
-import styles from "./index.module.css";
 import { GeneralProps } from "@/types/ui";
 import getImage from "@/utils/getImage";
 
@@ -9,11 +8,7 @@ interface MainLayoutProps extends GeneralProps {}
 const MainLayout = (props: MainLayoutProps) => {
   return (
     <div
-      className={cn(
-        styles.container,
-        "size-full flex flex-col bg-cover bg-center bg-no-repeat",
-        props.className
-      )}
+      className={cn("size-full flex flex-col bg-cover bg-center bg-no-repeat", props.className)}
       style={{
         backgroundImage: `url(${getImage("main_bg", "jpg")})`,
       }}

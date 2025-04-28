@@ -1,5 +1,4 @@
 import cn from "@/utils/cn";
-import styles from "./index.module.css";
 import { GeneralProps } from "@/types/ui";
 
 interface ChildPageLayoutProps extends GeneralProps {
@@ -12,7 +11,7 @@ const ChildPageLayout = (props: ChildPageLayoutProps) => {
   const { header, footer, fullScreen, children } = props;
 
   return (
-    <div className={cn("h-full w-full", styles.container, props.className)}>
+    <div className={cn("h-full w-full", props.className)}>
       {header && <div className="h-[3.125rem] w-full absolute top-0 left-0 z-50">{header}</div>}
       <div
         className={cn(

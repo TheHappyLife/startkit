@@ -1,5 +1,4 @@
 import cn from "@/utils/cn";
-import styles from "./index.module.css";
 import { forwardRef } from "react";
 interface InputProps {
   className?: string;
@@ -17,11 +16,7 @@ const Input = forwardRef<InputRef, InputProps>((props, inputRef) => {
   return (
     <div
       ref={inputRef}
-      className={cn(
-        styles.container,
-        "rounded-12 px-3 bg-ui-background-white-16 flex items-center gap-2",
-        className
-      )}
+      className={cn("rounded-12 px-3 bg-ui-background-white-16 flex items-center gap-2", className)}
       {...rest}
     >
       {leftPart && <div className="flex items-center">{leftPart}</div>}

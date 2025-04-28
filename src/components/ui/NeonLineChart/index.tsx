@@ -2,7 +2,6 @@ import React, { memo, useRef } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import clsx from "clsx";
-import styles from "./index.module.css";
 import formatDate from "@/utils/formatDate";
 import { GeneralProps } from "@/types/ui";
 
@@ -83,7 +82,7 @@ function NeonLineChart({ series, categories, className }: NeonLineChartPropsType
   };
 
   return (
-    <div className={clsx(styles.container, className)}>
+    <div className={clsx(className)}>
       <HighchartsReact highcharts={Highcharts} options={options} ref={chartComponentRef} />
     </div>
   );

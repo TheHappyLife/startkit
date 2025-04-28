@@ -1,5 +1,4 @@
 import cn from "@/utils/cn";
-import styles from "./index.module.css";
 import Link from "next/link";
 import { GeneralProps } from "@/types/ui";
 import { useMemo } from "react";
@@ -20,7 +19,7 @@ const CustomLink = (props: CustomLinkProps) => {
     <Component
       disabled={props.disabled}
       onClick={props.onClick}
-      className={cn(styles.container, props.disabled && "pointer-events-none", props.className)}
+      className={cn(props.disabled && "pointer-events-none", props.className)}
       href={props.href as string}
     >
       {props.children}

@@ -1,21 +1,17 @@
-import { styled } from "@mui/system";
-import { GeneralProps } from "@/types/ui";
-import { SwipeableDrawer } from "@mui/material";
-import { forwardRef, useImperativeHandle, useState } from "react";
-import cn from "@/utils/cn";
+import { UnknownFunction } from "../../../types/ui";
+import { Box, Drawer, SwipeableDrawer, SwipeableDrawerProps } from "@mui/material";
+import { forwardRef, ReactEventHandler, useImperativeHandle, useMemo, useState } from "react";
 
 export enum DRAWER_DIRECTION {
   LEFT = "left",
-
   RIGHT = "right",
 }
 
-interface DrawerComponentProps extends GeneralProps {
-  className?: string;
-  onOpen?: () => void;
-  onClose?: () => void;
+export interface DrawerComponentProps
+  extends Omit<SwipeableDrawerProps, "onClose" | "onToggle" | "onOpen"> {
+  onOpen?: UnknownFunction;
+  onClose?: UnknownFunction;
   trigger?: React.ReactNode;
-
   onToggle?: (status?: boolean) => unknown;
   direction?: DRAWER_DIRECTION;
 }
@@ -23,51 +19,97 @@ interface DrawerComponentProps extends GeneralProps {
 export interface DrawerComponentRef {
   open: () => void;
   close: () => void;
+  lockStatus: () => void;
+  unlockStatus: () => void;
 }
 
-const CustomDrawer = styled(SwipeableDrawer)({
-  "& .MuiDrawer-paper": {
-    backgroundColor: "transparent",
-    overflow: "hidden",
-    boxShadow: "none",
-  },
-});
 const DrawerComponent = forwardRef<DrawerComponentRef, DrawerComponentProps>((props, ref) => {
+  const { onOpen, onClose, onToggle, sx, trigger, direction, children, ...rest } = props;
   const [isShowDrawerComponent, setIsShowDrawerComponent] = useState(false);
-
+  const [isOpen, setIsOpen] = useState<boolean | undefined>(undefined);
+  const DrawerComponent = useMemo(
+    () => (isOpen !== undefined ? Drawer : SwipeableDrawer),
+    [isOpen]
+  );
+  const lockStatus = () => {
+    setIsOpen(isShowDrawerComponent);
+  };
+  const unlockStatus = () => {
+    setIsOpen(undefined);
+  };
   const handleOpen = () => {
+    unlockStatus();
     setIsShowDrawerComponent(true);
-    props.onOpen?.();
+    onOpen?.();
   };
 
   const handleClose = () => {
+    unlockStatus();
     setIsShowDrawerComponent(false);
-    props.onClose?.();
+    onClose?.();
   };
 
-  const toggle = () => {
-    setIsShowDrawerComponent(!isShowDrawerComponent);
-    props.onToggle?.(!isShowDrawerComponent);
+  const toggle: React.MouseEventHandler<HTMLElement> = (e) => {
+    const children = Array.from(e.currentTarget.children);
+    const button = children.find((child) => child.tagName === "BUTTON") as
+      | HTMLButtonElement
+      | undefined;
+
+    if (button?.disabled) {
+      e.stopPropagation();
+
+      return;
+    }
+
+    unlockStatus();
+    const newState = !isShowDrawerComponent;
+    setIsShowDrawerComponent(newState);
+    onToggle?.(newState);
   };
 
   useImperativeHandle(ref, () => ({
     open: handleOpen,
     close: handleClose,
+    lockStatus,
+    unlockStatus,
   }));
+
+  const onDrawerClose: ReactEventHandler = (e) => {
+    setIsShowDrawerComponent(false);
+    onClose?.(e);
+  };
+
+  const onDrawerOpen: ReactEventHandler = (e) => {
+    setIsShowDrawerComponent(true);
+    onOpen?.(e);
+  };
 
   return (
     <>
-      <div onClick={toggle} className={cn(props.className)}>
-        {props.trigger}
-      </div>
-      <CustomDrawer
-        onOpen={() => {}}
-        anchor={props.direction || "bottom"}
-        open={isShowDrawerComponent}
-        onClose={handleClose}
+      <Box
+        sx={{
+          ...sx,
+        }}
+        onClick={toggle}
       >
-        {props.children}
-      </CustomDrawer>
+        {trigger}
+      </Box>
+      <DrawerComponent
+        {...rest}
+        sx={{
+          "& .MuiDrawer-paper": {
+            backgroundColor: "transparent",
+            overflow: "hidden",
+            boxShadow: "none",
+          },
+        }}
+        anchor={direction || "bottom"}
+        open={isOpen ?? isShowDrawerComponent}
+        onOpen={onDrawerOpen}
+        onClose={onDrawerClose}
+      >
+        {children}
+      </DrawerComponent>
     </>
   );
 });

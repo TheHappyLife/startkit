@@ -5,11 +5,3 @@ export type GeneralProps = {
   className?: string;
   onClick?: UnknownFunction;
 };
-
-export enum BUTTON_STATUS {
-  LOADING = "loading",
-
-  DISABLED = "disabled",
-
-  ENABLED = "enabled",
-}

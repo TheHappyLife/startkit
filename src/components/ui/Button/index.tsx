@@ -1,8 +1,14 @@
 import cn from "@/utils/cn";
-import styles from "./index.module.css";
-import { BUTTON_STATUS } from "@/types/ui";
 import { Button as MuiButton, ButtonProps as MuiButtonProps } from "@mui/material";
 import theme from "@/theme/mui/theme";
+
+export enum BUTTON_STATUS {
+  LOADING = "loading",
+
+  DISABLED = "disabled",
+
+  ENABLED = "enabled",
+}
 
 export interface ButtonProps extends MuiButtonProps {
   className?: string;
@@ -16,11 +22,7 @@ const Button: React.FC<ButtonProps> & {
   const { status = BUTTON_STATUS.ENABLED, className, ...rest } = props;
 
   return (
-    <MuiButton
-      className={cn(styles.container, "", className)}
-      disabled={status !== BUTTON_STATUS.ENABLED}
-      {...rest}
-    >
+    <MuiButton className={cn("", className)} disabled={status !== BUTTON_STATUS.ENABLED} {...rest}>
       {props.children}
     </MuiButton>
   );
@@ -39,7 +41,9 @@ Button.Primary = (props: ButtonProps) => {
         borderRadius: "999px",
         color: "#000000",
       }}
-    />
+    >
+      {props.children}
+    </Button>
   );
 };
 
@@ -59,7 +63,9 @@ Button.Secondary = (props: ButtonProps) => {
         backgroundColor: `color-mix(in srgb, ${theme.palette.secondary.main} 16%, transparent)`,
         color: theme.palette.secondary.main,
       }}
-    />
+    >
+      {props.children}
+    </Button>
   );
 };
 

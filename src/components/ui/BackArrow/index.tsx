@@ -1,18 +1,19 @@
-import cn from "@/utils/cn";
-import styles from "./index.module.css";
-import getIcon from "@/utils/getIcon";
+import getIcon from "../../../utils/getIcon";
 import Icon from "../Icon";
-import { GeneralProps } from "@/types/ui";
+import { IconProps } from "../Icon";
 
-interface BackArrowProps extends GeneralProps {}
+interface BackArrowProps extends IconProps {}
 
 const BackArrow = (props: BackArrowProps) => {
-  const { className, ...rest } = props;
+  const { ...rest } = props;
 
   return (
     <Icon
       src={getIcon("arrow_back")}
-      className={cn(styles.container, "size-6", className)}
+      width={24}
+      sx={{
+        ...props.sx,
+      }}
       {...rest}
     />
   );

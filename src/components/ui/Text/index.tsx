@@ -1,20 +1,13 @@
-import cn from "@/utils/cn";
-import styles from "./index.module.css";
-import { GeneralProps } from "@/types/ui";
-import { ElementType, forwardRef } from "react";
-interface TextProps extends Omit<GeneralProps, "onClick">, React.HTMLAttributes<HTMLElement> {
-  tag?: ElementType;
-  onClick?: GeneralProps["onClick"] | React.HTMLAttributes<HTMLElement>["onClick"];
-}
+import { forwardRef } from "react";
+import { Box, BoxProps } from "@mui/material";
+interface TextProps extends BoxProps {}
 
 const Text = forwardRef<HTMLElement, TextProps>(
-  ({ tag, children, className, ...rest }: TextProps, ref) => {
-    const Tag = tag || "span";
-
+  ({ children, sx, component, ...rest }: TextProps, ref) => {
     return (
-      <Tag ref={ref} className={cn(styles.container, "", className)} {...rest}>
+      <Box component={component ?? "span"} ref={ref} sx={sx} {...rest}>
         {children}
-      </Tag>
+      </Box>
     );
   }
 );

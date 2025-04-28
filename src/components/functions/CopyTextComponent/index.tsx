@@ -1,6 +1,5 @@
 import { useState } from "react";
 import clsx from "clsx";
-import styles from "./index.module.css";
 import { GeneralProps } from "@/types/ui";
 import getIcon from "@/utils/getIcon";
 import Icon from "../../ui/Icon";
@@ -38,17 +37,14 @@ const CopyTextComponent = ({
       {children}
       <div
         className={clsx(
-          "flex items-center justify-center gap-1 rounded-full",
-          styles.successOverlay,
+          "flex items-center justify-center gap-1 rounded-full absolute inset-0 bg-black backdrop-blur-[12px] transition-opacity duration-300 ease-in-out",
           {
             "opacity-0": !showSuccess,
             "opacity-100": showSuccess,
           }
         )}
       >
-        {iconSuccess || (
-          <Icon src={getIcon("copied_check")} className={cn(styles.defaultSuccessIcon, "size-4")} />
-        )}
+        {iconSuccess || <Icon src={getIcon("copied_check")} className={cn("size-4")} />}
         {!hideTextMessage && <span className="text-primary inline-block text-[0.8em]">Copied</span>}
       </div>
     </div>

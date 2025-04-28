@@ -1,5 +1,0 @@
-- Purpose: Contains functions that implement the project’s specific business logic and are typically used within services, hooks, or components.
-- Examples:
-  + Calculating product prices or taxes.
-  + Filtering, sorting, or transforming data.
-  + Any project-specific logic that isn’t directly tied to UI components.

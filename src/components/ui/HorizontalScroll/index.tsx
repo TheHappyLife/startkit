@@ -1,6 +1,5 @@
 "use client";
 import { GeneralProps } from "@/types/ui";
-import styles from "./index.module.css";
 import clsx from "clsx";
 import { TouchEvent, useRef } from "react";
 interface HorizontalScrollPropsType extends GeneralProps {}
@@ -36,7 +35,7 @@ function HorizontalScroll({ children, className }: HorizontalScrollPropsType) {
 
   return (
     <div
-      className={clsx("hide_scrollbar", styles.container, className)}
+      className={clsx("hide_scrollbar", className)}
       ref={scrollContainerRef}
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}

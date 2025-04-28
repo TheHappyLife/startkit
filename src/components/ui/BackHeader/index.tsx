@@ -1,6 +1,5 @@
 "use client";
 import cn from "@/utils/cn";
-import styles from "./index.module.css";
 import { GeneralProps, UnknownFunction } from "@/types/ui";
 import BackArrow from "../BackArrow";
 import useCustomRouter from "@/hooks/useCustomRouter";
@@ -26,7 +25,6 @@ const BackHeader = (props: BackHeaderProps) => {
   return (
     <div
       className={cn(
-        styles.container,
         "flex items-center gap-3 px-ui-horizontal-3 h-full bg-ui-bg-white relative",
         className
       )}
