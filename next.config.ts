@@ -4,7 +4,7 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: `/${process.env.NEXT_NAME_APP_1}/:path*`,
+        source: `/${process.env.NEXT_LINK_HOME_APP_1}/:path*`,
         destination: "/:path*",
       },
     ];
