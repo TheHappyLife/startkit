@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write . && eslint --fix --ignore-pattern .next --ignore-pattern node_modules"
+    "format": "prettier --write . && eslint --fix --ignore-pattern .next --ignore-pattern node_modules",
+    "update": "npm cache clean --force && npm i tek-wallet@latest --legacy-peer-deps && npm run dev"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -23,7 +24,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
-    "swiper": "^11.2.4"
+    "tek-wallet": "^0.0.532"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
