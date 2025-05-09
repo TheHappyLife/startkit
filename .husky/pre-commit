@@ -1,2 +1,3 @@
 #!/bin/sh
+# Build before commit to git 
 npm run build
