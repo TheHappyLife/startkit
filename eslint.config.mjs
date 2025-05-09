@@ -77,6 +77,7 @@ const eslintConfig = antfu({
     'no-trailing-spaces': ['error', { ignoreComments: true }],
     'eol-last': ['error', 'always'],
     'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
 
     // ES6 features
     'no-var': ['error'],
