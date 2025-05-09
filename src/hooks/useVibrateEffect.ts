@@ -1,9 +1,9 @@
 function useVibrateEffect() {
   const success = () => {
-    //some logic
+    // some logic
   };
   const error = () => {
-    //some logic
+    // some logic
   };
 
   return { success, error };

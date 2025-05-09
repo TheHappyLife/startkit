@@ -1,19 +1,20 @@
-import cn from "@/utils/cn";
-import { Button as MuiButton, ButtonProps as MuiButtonProps } from "@mui/material";
-import theme from "@/theme/mui/theme";
+import type { ButtonProps as MuiButtonProps } from '@mui/material';
+import theme from '@/theme/mui/theme';
+import cn from '@/utils/cn';
+import { Button as MuiButton } from '@mui/material';
 
 export enum BUTTON_STATUS {
-  LOADING = "loading",
+  LOADING = 'loading',
 
-  DISABLED = "disabled",
+  DISABLED = 'disabled',
 
-  ENABLED = "enabled",
+  ENABLED = 'enabled',
 }
 
-export interface ButtonProps extends MuiButtonProps {
+export type ButtonProps = {
   className?: string;
   status?: BUTTON_STATUS;
-}
+} & MuiButtonProps;
 
 const Button: React.FC<ButtonProps> & {
   Primary: React.FC<ButtonProps>;
@@ -22,13 +23,13 @@ const Button: React.FC<ButtonProps> & {
   const { status = BUTTON_STATUS.ENABLED, className, ...rest } = props;
 
   return (
-    <MuiButton className={cn("", className)} disabled={status !== BUTTON_STATUS.ENABLED} {...rest}>
+    <MuiButton className={cn('', className)} disabled={status !== BUTTON_STATUS.ENABLED} {...rest}>
       {props.children}
     </MuiButton>
   );
 };
 
-Button.displayName = "Button";
+Button.displayName = 'Button';
 
 Button.Primary = (props: ButtonProps) => {
   return (
@@ -38,8 +39,8 @@ Button.Primary = (props: ButtonProps) => {
       color="primary"
       className="text-16 leading-120 !capitalize font-500 px-4 py-2.5"
       sx={{
-        borderRadius: "999px",
-        color: "#000000",
+        borderRadius: '999px',
+        color: '#000000',
       }}
     >
       {props.children}
@@ -47,7 +48,7 @@ Button.Primary = (props: ButtonProps) => {
   );
 };
 
-Button.Primary.displayName = "Button.Primary";
+Button.Primary.displayName = 'Button.Primary';
 
 Button.Secondary = (props: ButtonProps) => {
   const { className, ...rest } = props;
@@ -57,9 +58,9 @@ Button.Secondary = (props: ButtonProps) => {
       {...rest}
       variant="contained"
       color="secondary"
-      className={cn("text-16 leading-120 !capitalize font-500 px-4 py-2.5", className)}
+      className={cn('text-16 leading-120 !capitalize font-500 px-4 py-2.5', className)}
       sx={{
-        borderRadius: "999px",
+        borderRadius: '999px',
         backgroundColor: `color-mix(in srgb, ${theme.palette.secondary.main} 16%, transparent)`,
         color: theme.palette.secondary.main,
       }}
@@ -69,6 +70,6 @@ Button.Secondary = (props: ButtonProps) => {
   );
 };
 
-Button.Secondary.displayName = "Button.Secondary";
+Button.Secondary.displayName = 'Button.Secondary';
 
 export default Button;

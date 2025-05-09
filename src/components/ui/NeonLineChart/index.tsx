@@ -1,35 +1,35 @@
-import React, { memo, useRef } from "react";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
-import clsx from "clsx";
-import formatDate from "@/utils/formatDate";
-import { GeneralProps } from "@/types/ui";
+import type { GeneralProps } from '@/types/ui';
+import formatDate from '@/utils/formatDate';
+import clsx from 'clsx';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
+import React, { memo, useRef } from 'react';
 
-export interface NeonLineChartPropsTypes extends GeneralProps {
+export type NeonLineChartPropsTypes = {
   categories?: string[];
   series?: Array<{ name: string; data: any[] }>;
-}
+} & GeneralProps;
 
 function NeonLineChart({ series, categories, className }: NeonLineChartPropsTypes) {
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);
   const options: Highcharts.Options = {
     title: {
-      text: "",
+      text: '',
     },
     chart: {
-      backgroundColor: "transparent",
+      backgroundColor: 'transparent',
       height: `${180}px`,
       animation: true,
     },
-    colors: ["#60D591"],
+    colors: ['#60D591'],
     series: [
       {
-        type: "line",
-        name: "",
+        type: 'line',
+        name: '',
         data: series?.[0]?.data ?? [],
         lineWidth: 2, // Line width
         shadow: {
-          color: "#60D591", // Neon red glow
+          color: '#60D591', // Neon red glow
           offsetX: 0,
           offsetY: 0,
           opacity: 1,
@@ -49,31 +49,31 @@ function NeonLineChart({ series, categories, className }: NeonLineChartPropsType
     },
     xAxis: {
       visible: false,
-      categories: categories,
+      categories,
     },
     legend: {
       enabled: false,
     },
     tooltip: {
-      backgroundColor: "#00000055",
+      backgroundColor: '#00000055',
       style: {
-        color: "#fff",
+        color: '#fff',
       },
       padding: 6,
-      formatter: function (): string | null {
+      formatter(): string | null {
         try {
-          if ((this as any)?.y === "") {
+          if ((this as any)?.y === '') {
             return null;
           }
 
           return `<div>
                    <div style="font-size: 0.8em; ">${formatDate((this as any)?.x)}</div> <br/>
                    <div style="font-weight: 600; color: #60D591; font-size: 1.1em;">${+(
-                     (this as any)?.y ?? 0
-                   )}</div>
+                      (this as any)?.y ?? 0
+                    )}</div>
                    </div>`;
         } catch (err) {
-          console.error("🚀 ~ NeonLineChart ~ err:", err);
+          console.error('🚀 ~ NeonLineChart ~ err:', err);
 
           return null;
         }

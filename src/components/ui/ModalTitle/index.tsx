@@ -1,14 +1,15 @@
-import cn from "@/utils/cn";
-import Text from "../Text";
-import { GeneralProps } from "@/types/ui";
-interface ModalTitleProps extends GeneralProps {}
+import type { GeneralProps } from '@/types/ui';
+import cn from '@/utils/cn';
+import Text from '../Text';
+
+type ModalTitleProps = {} & GeneralProps;
 
 const ModalTitle = (props: ModalTitleProps) => {
   const { children, className, ...rest } = props;
 
   return (
     <Text
-      className={cn("text-18 font-600 leading-100 capitalize text-ui-text-white", className)}
+      className={cn('text-18 font-600 leading-100 capitalize text-ui-text-white', className)}
       {...rest}
     >
       {children}

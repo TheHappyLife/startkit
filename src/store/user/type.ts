@@ -1,3 +1,3 @@
-export interface UserState {
+export type UserState = {
   isLoggedIn?: boolean;
-}
+};

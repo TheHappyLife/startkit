@@ -1,35 +1,36 @@
-import { UnknownFunction } from "../../../types/ui";
-import { Box, Drawer, SwipeableDrawer, SwipeableDrawerProps } from "@mui/material";
-import { forwardRef, ReactEventHandler, useImperativeHandle, useMemo, useState } from "react";
+import type { SwipeableDrawerProps } from '@mui/material';
+import type { ReactEventHandler } from 'react';
+import type { UnknownFunction } from '../../../types/ui';
+import { Box, Drawer, SwipeableDrawer } from '@mui/material';
+import { useImperativeHandle, useMemo, useState } from 'react';
 
 export enum DRAWER_DIRECTION {
-  LEFT = "left",
-  RIGHT = "right",
+  LEFT = 'left',
+  RIGHT = 'right',
 }
 
-export interface DrawerComponentProps
-  extends Omit<SwipeableDrawerProps, "onClose" | "onToggle" | "onOpen"> {
+export type DrawerComponentProps = {
   onOpen?: UnknownFunction;
   onClose?: UnknownFunction;
   trigger?: React.ReactNode;
   onToggle?: (status?: boolean) => unknown;
   direction?: DRAWER_DIRECTION;
-}
+} & Omit<SwipeableDrawerProps, 'onClose' | 'onToggle' | 'onOpen'>;
 
-export interface DrawerComponentRef {
+export type DrawerComponentRef = {
   open: () => void;
   close: () => void;
   lockStatus: () => void;
   unlockStatus: () => void;
-}
+};
 
-const DrawerComponent = forwardRef<DrawerComponentRef, DrawerComponentProps>((props, ref) => {
+const DrawerComponent = ({ ref, ...props }: DrawerComponentProps & { ref?: React.RefObject<DrawerComponentRef | null> }) => {
   const { onOpen, onClose, onToggle, sx, trigger, direction, children, ...rest } = props;
   const [isShowDrawerComponent, setIsShowDrawerComponent] = useState(false);
   const [isOpen, setIsOpen] = useState<boolean | undefined>(undefined);
   const DrawerComponent = useMemo(
     () => (isOpen !== undefined ? Drawer : SwipeableDrawer),
-    [isOpen]
+    [isOpen],
   );
   const lockStatus = () => {
     setIsOpen(isShowDrawerComponent);
@@ -51,7 +52,7 @@ const DrawerComponent = forwardRef<DrawerComponentRef, DrawerComponentProps>((pr
 
   const toggle: React.MouseEventHandler<HTMLElement> = (e) => {
     const children = Array.from(e.currentTarget.children);
-    const button = children.find((child) => child.tagName === "BUTTON") as
+    const button = children.find(child => child.tagName === 'BUTTON') as
       | HTMLButtonElement
       | undefined;
 
@@ -97,13 +98,13 @@ const DrawerComponent = forwardRef<DrawerComponentRef, DrawerComponentProps>((pr
       <DrawerComponent
         {...rest}
         sx={{
-          "& .MuiDrawer-paper": {
-            backgroundColor: "transparent",
-            overflow: "hidden",
-            boxShadow: "none",
+          '& .MuiDrawer-paper': {
+            backgroundColor: 'transparent',
+            overflow: 'hidden',
+            boxShadow: 'none',
           },
         }}
-        anchor={direction || "bottom"}
+        anchor={direction || 'bottom'}
         open={isOpen ?? isShowDrawerComponent}
         onOpen={onDrawerOpen}
         onClose={onDrawerClose}
@@ -112,8 +113,8 @@ const DrawerComponent = forwardRef<DrawerComponentRef, DrawerComponentProps>((pr
       </DrawerComponent>
     </>
   );
-});
+};
 
-DrawerComponent.displayName = "DrawerComponent";
+DrawerComponent.displayName = 'DrawerComponent';
 
 export default DrawerComponent;

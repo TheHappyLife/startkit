@@ -1,22 +1,22 @@
-import cn from "@/utils/cn";
-import { GeneralProps } from "@/types/ui";
+import type { GeneralProps } from '@/types/ui';
+import cn from '@/utils/cn';
 
-interface ChildPageLayoutProps extends GeneralProps {
+type ChildPageLayoutProps = {
   header?: React.ReactNode;
   footer?: React.ReactNode;
   fullScreen?: boolean;
-}
+} & GeneralProps;
 
 const ChildPageLayout = (props: ChildPageLayoutProps) => {
   const { header, footer, fullScreen, children } = props;
 
   return (
-    <div className={cn("h-full w-full", props.className)}>
+    <div className={cn('h-full w-full', props.className)}>
       {header && <div className="h-[3.125rem] w-full absolute top-0 left-0 z-50">{header}</div>}
       <div
         className={cn(
-          "h-full w-full overflow-x-hidden overflow-y-auto",
-          header && !fullScreen && "pt-[3.125rem]"
+          'h-full w-full overflow-x-hidden overflow-y-auto',
+          header && !fullScreen && 'pt-[3.125rem]',
         )}
       >
         {children}

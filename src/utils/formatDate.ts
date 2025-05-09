@@ -4,7 +4,7 @@ const formatDate = (date: string) => {
   } catch (error) {
     console.error(error);
 
-    return "Invalid date";
+    return 'Invalid date';
   }
 };
 

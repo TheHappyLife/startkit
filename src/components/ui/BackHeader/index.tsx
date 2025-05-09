@@ -1,14 +1,14 @@
-"use client";
-import cn from "@/utils/cn";
-import { GeneralProps, UnknownFunction } from "@/types/ui";
-import BackArrow from "../BackArrow";
-import useCustomRouter from "@/hooks/useCustomRouter";
+'use client';
+import type { GeneralProps, UnknownFunction } from '@/types/ui';
+import useCustomRouter from '@/hooks/useCustomRouter';
+import cn from '@/utils/cn';
+import BackArrow from '../BackArrow';
 
-interface BackHeaderProps extends GeneralProps {
+type BackHeaderProps = {
   overrideBack?: (e: React.MouseEvent<HTMLDivElement>) => void;
   center?: React.ReactNode;
   hideBack?: boolean;
-}
+} & GeneralProps;
 
 const BackHeader = (props: BackHeaderProps) => {
   const router = useCustomRouter();
@@ -25,8 +25,8 @@ const BackHeader = (props: BackHeaderProps) => {
   return (
     <div
       className={cn(
-        "flex items-center gap-3 px-ui-horizontal-3 h-full bg-ui-bg-white relative",
-        className
+        'flex items-center gap-3 px-ui-horizontal-3 h-full bg-ui-bg-white relative',
+        className,
       )}
     >
       {!hideBack && <BackArrow onClick={back as UnknownFunction} />}

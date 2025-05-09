@@ -1,13 +1,14 @@
-import cn from "@/utils/cn";
-import { GeneralProps } from "@/types/ui";
-import Icon from "../Icon";
-import getIcon from "@/utils/getIcon";
-interface CloseModalProps extends GeneralProps {}
+import type { GeneralProps } from '@/types/ui';
+import cn from '@/utils/cn';
+import getIcon from '@/utils/getIcon';
+import Icon from '../Icon';
+
+type CloseModalProps = {} & GeneralProps;
 
 const CloseModal = (props: CloseModalProps) => {
   const { className, ...rest } = props;
 
-  return <Icon src={getIcon("close_modal")} className={cn("size-6", className)} {...rest} />;
+  return <Icon src={getIcon('close_modal')} className={cn('size-6', className)} {...rest} />;
 };
 
 export default CloseModal;

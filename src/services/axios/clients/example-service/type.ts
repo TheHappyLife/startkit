@@ -7,6 +7,6 @@ export type ExampleServiceResponse = {
   data: ExampleData;
 };
 
-export interface ExampleData {
+export type ExampleData = {
   name: string;
-}
+};

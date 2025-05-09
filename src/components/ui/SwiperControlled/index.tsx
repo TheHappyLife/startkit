@@ -1,25 +1,27 @@
-import cn from "@/utils/cn";
-import { Swiper, SwiperProps, SwiperRef } from "swiper/react";
-import { Swiper as SwiperType } from "swiper/types";
-import { GeneralProps } from "@/types/ui";
-import { forwardRef, useImperativeHandle, useRef, useState } from "react";
-import "swiper/css";
-import { Tabs } from "@mui/material";
-interface SwiperControlledProps extends GeneralProps {
+import type { GeneralProps } from '@/types/ui';
+import type { SwiperProps, SwiperRef } from 'swiper/react';
+import type { Swiper as SwiperType } from 'swiper/types';
+import cn from '@/utils/cn';
+import { Tabs } from '@mui/material';
+import { useImperativeHandle, useRef, useState } from 'react';
+import { Swiper } from 'swiper/react';
+import 'swiper/css';
+
+type SwiperControlledProps = {
   className?: string;
   tabs?: React.ReactNode[];
   initialActiveTab?: number;
   tabsClassName?: string;
   swiperProps?: SwiperProps;
-}
+} & GeneralProps;
 
-export interface SwiperControlledRef {
+export type SwiperControlledRef = {
   slideTo: (index: number) => void;
   next: () => void;
   prev: () => void;
-}
+};
 
-const SwiperControlled = forwardRef<SwiperControlledRef, SwiperControlledProps>((props, ref) => {
+const SwiperControlled = ({ ref, ...props }: SwiperControlledProps & { ref?: React.RefObject<SwiperControlledRef | null> }) => {
   const [activeTab, setActiveTab] = useState(props.initialActiveTab || 0);
   const swiperRef = useRef<SwiperRef>(null);
   const slideTo = (index: number) => {
@@ -63,8 +65,8 @@ const SwiperControlled = forwardRef<SwiperControlledRef, SwiperControlledProps>(
       </Swiper>
     </>
   );
-});
+};
 
-SwiperControlled.displayName = "SwiperControlled";
+SwiperControlled.displayName = 'SwiperControlled';
 
 export default SwiperControlled;

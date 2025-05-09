@@ -1,15 +1,15 @@
-import { useState } from "react";
-import clsx from "clsx";
-import { GeneralProps } from "@/types/ui";
-import getIcon from "@/utils/getIcon";
-import Icon from "../../ui/Icon";
-import cn from "@/utils/cn";
+import type { GeneralProps } from '@/types/ui';
+import cn from '@/utils/cn';
+import getIcon from '@/utils/getIcon';
+import clsx from 'clsx';
+import { useState } from 'react';
+import Icon from '../../ui/Icon';
 
-interface CopyTextComponentProps extends GeneralProps {
+type CopyTextComponentProps = {
   value: string;
   iconSuccess?: React.ReactNode;
   hideTextMessage?: boolean;
-}
+} & GeneralProps;
 
 const CopyTextComponent = ({
   value,
@@ -28,23 +28,23 @@ const CopyTextComponent = ({
         setShowSuccess(false);
       }, 800);
     } catch (err) {
-      console.error("Failed to copy: ", err);
+      console.error('Failed to copy: ', err);
     }
   };
 
   return (
-    <div onClick={CopyTextComponent} className={clsx("relative cursor-pointer", className)}>
+    <div onClick={CopyTextComponent} className={clsx('relative cursor-pointer', className)}>
       {children}
       <div
         className={clsx(
-          "flex items-center justify-center gap-1 rounded-full absolute inset-0 bg-black backdrop-blur-[12px] transition-opacity duration-300 ease-in-out",
+          'flex items-center justify-center gap-1 rounded-full absolute inset-0 bg-black backdrop-blur-[12px] transition-opacity duration-300 ease-in-out',
           {
-            "opacity-0": !showSuccess,
-            "opacity-100": showSuccess,
-          }
+            'opacity-0': !showSuccess,
+            'opacity-100': showSuccess,
+          },
         )}
       >
-        {iconSuccess || <Icon src={getIcon("copied_check")} className={cn("size-4")} />}
+        {iconSuccess || <Icon src={getIcon('copied_check')} className={cn('size-4')} />}
         {!hideTextMessage && <span className="text-primary inline-block text-[0.8em]">Copied</span>}
       </div>
     </div>

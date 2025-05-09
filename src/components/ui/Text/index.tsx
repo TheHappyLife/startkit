@@ -1,16 +1,15 @@
-import { forwardRef } from "react";
-import { Box, BoxProps } from "@mui/material";
-interface TextProps extends BoxProps {}
+import type { BoxProps } from '@mui/material';
+import { Box } from '@mui/material';
 
-const Text = forwardRef<HTMLElement, TextProps>(
-  ({ children, sx, component, ...rest }: TextProps, ref) => {
-    return (
-      <Box component={component ?? "span"} ref={ref} sx={sx} {...rest}>
-        {children}
-      </Box>
-    );
-  }
-);
+type TextProps = {} & BoxProps;
 
-Text.displayName = "Text";
+const Text = ({ ref, children, sx, component, ...rest }: TextProps & { ref?: React.RefObject<HTMLElement | null> }) => {
+  return (
+    <Box component={component ?? 'span'} ref={ref} sx={sx} {...rest}>
+      {children}
+    </Box>
+  );
+};
+
+Text.displayName = 'Text';
 export default Text;

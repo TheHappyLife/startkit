@@ -1,12 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { UserState } from "./type";
+import type { UserState } from './type';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: UserState = {
   isLoggedIn: false,
 };
 
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     setIsLoggedIn: (state, action) => {

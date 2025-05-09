@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-let currentAccessToken = "";
+let currentAccessToken = '';
 
 const userClientRequest = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_SERVER_URL}`,
@@ -21,7 +21,7 @@ userClientRequest.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 export default userClientRequest;

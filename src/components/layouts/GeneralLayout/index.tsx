@@ -1,6 +1,7 @@
-"use client";
-import { GeneralProps } from "@/types/ui";
-interface GeneralLayoutProps extends GeneralProps {}
+'use client';
+import type { GeneralProps } from '@/types/ui';
+
+type GeneralLayoutProps = {} & GeneralProps;
 
 const GeneralLayout = (props: GeneralLayoutProps) => {
   return <>{props.children}</>;

@@ -1,8 +1,10 @@
-"use client";
-import { GeneralProps } from "@/types/ui";
-import clsx from "clsx";
-import { TouchEvent, useRef } from "react";
-interface HorizontalScrollPropsType extends GeneralProps {}
+'use client';
+import type { GeneralProps } from '@/types/ui';
+import type { TouchEvent } from 'react';
+import clsx from 'clsx';
+import { useRef } from 'react';
+
+type HorizontalScrollPropsType = {} & GeneralProps;
 function HorizontalScroll({ children, className }: HorizontalScrollPropsType) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
@@ -35,7 +37,7 @@ function HorizontalScroll({ children, className }: HorizontalScrollPropsType) {
 
   return (
     <div
-      className={clsx("hide_scrollbar", className)}
+      className={clsx('hide_scrollbar', className)}
       ref={scrollContainerRef}
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
@@ -43,9 +45,9 @@ function HorizontalScroll({ children, className }: HorizontalScrollPropsType) {
       onMouseMove={handleMouseMove as any}
       onTouchMove={(e: TouchEvent<HTMLDivElement>) => e.stopPropagation()}
       style={{
-        overflowX: "auto",
-        display: "flex",
-        cursor: "grab",
+        overflowX: 'auto',
+        display: 'flex',
+        cursor: 'grab',
       }}
     >
       {children}
