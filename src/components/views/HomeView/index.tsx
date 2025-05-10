@@ -10,6 +10,12 @@ import {
   RequireConnect,
   useWallet,
 } from "tek-wallet";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setExemple } from "@/store/exemple/exempleSlice";
+import { useEffect } from "react";
+import { RootState } from "@/store/store";
+import { ExempleState } from "@/store/exemple/type";
 
 interface HomeViewProps extends GeneralProps {}
 
@@ -23,7 +29,19 @@ const HomeView = (props: HomeViewProps) => {
     masterWallet,
     activities,
   } = useWallet();
-
+  const dispatch = useDispatch();
+  const exemple = useSelector((state: RootState) => state.exemple as ExempleState);
+  const data = async () => {
+    const res = await axios.get(
+      "https://dogapi.dog/api/v2/breeds"
+    )
+    dispatch(setExemple(res.data.data));
+  }
+  useEffect(() => {
+    data();
+  }, [])
+  console.log(exemple);
+  
   return (
     <DefaultPageLayout className={cn("flex flex-col gap-4 pb-bottom-page", props.className)}>
       <div
@@ -76,6 +94,9 @@ const HomeView = (props: HomeViewProps) => {
       </LockToken>
       <Activities>Activities</Activities>
       <AssetView />
+      {exemple.exemple.map((item) => (
+          <div key={item.id}>{item.id}</div>
+      ))}
     </DefaultPageLayout>
   );
 };

@@ -18,12 +18,14 @@
     "@reduxjs/toolkit": "^2.6.1",
     "axios": "^1.8.2",
     "clsx": "^2.1.1",
+    "env-cmd": "^10.1.0",
     "highcharts": "11.4.8",
     "highcharts-react-official": "3.2.1",
     "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
     "tek-wallet": "^0.0.532"
   },
   "devDependencies": {
