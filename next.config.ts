@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  basePath: process.env.NEXT_NAME_APP_1,
+  basePath: `/${process.env.NEXT_NAME_APP_1}`,
+  assetPrefix: `/${process.env.NEXT_NAME_APP_1}/`,
   async rewrites() {
     return [
       {

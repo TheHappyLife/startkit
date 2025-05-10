@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import GeneralLayout from "@/components/layouts/GeneralLayout";
 import MuiThemeProvider from "@/theme/mui";
-import FeatDataApp from "@/components/views/FeatDataApp";
 
 export const metadata: Metadata = {
   title: "Fortune Vault - Secure & Smart Wealth Management",
@@ -21,7 +20,7 @@ export default function RootLayout({
           <MuiThemeProvider>
           <GeneralLayout>
             {children}
-            <FeatDataApp/>
+            {/* <FeatDataApp/> */}
           </GeneralLayout>
           </MuiThemeProvider>
       </body>

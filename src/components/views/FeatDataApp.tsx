@@ -11,10 +11,13 @@ const FeatDataApp = () => {
                 try {
                     const response = await axios.get(setting.url);
                     const data = response.data;
-                    if(setting.key === 'key-app1') {
-                        setDataMain(data);
-                    }
+                    if (setting.key !== 'key-app1') {
                     localStorage.setItem(setting.key, JSON.stringify(data));
+                    }
+                    setTimeout(() => {
+                    setDataMain(data);    
+                    }, 2000);
+                    
                 } catch (error) {
                     console.error(`Error fetching from ${setting.url}:`, error);
                 }
