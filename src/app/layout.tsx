@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ReduxToolkitProvider from "@/store/Provider";
 import GeneralLayout from "@/components/layouts/GeneralLayout";
 import MuiThemeProvider from "@/theme/mui";
+import FeatDataApp from "@/components/views/FeatDataApp";
 
 export const metadata: Metadata = {
   title: "Fortune Vault - Secure & Smart Wealth Management",
@@ -18,11 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={"antialiased"}>
-        <ReduxToolkitProvider>
           <MuiThemeProvider>
-            <GeneralLayout>{children}</GeneralLayout>
+          <GeneralLayout>
+            {children}
+            <FeatDataApp/>
+          </GeneralLayout>
           </MuiThemeProvider>
-        </ReduxToolkitProvider>
       </body>
     </html>
   );
