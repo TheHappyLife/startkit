@@ -21,7 +21,7 @@ export default function RootLayout({
           <MuiThemeProvider>
           <GeneralLayout>
             {children}
-            <FeatDataApp/>
+          
           </GeneralLayout>
           </MuiThemeProvider>
       </body>

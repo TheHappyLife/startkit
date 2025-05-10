@@ -1,5 +1,5 @@
 "use client";
-import { Settings } from "@/SettingApp";
+import { mainStore, mainStoreApp1, Settings } from "@/SettingApp";
 import { useStoreApp } from "@/store/storeAppMain";
 import axios from "axios";
 import { useEffect } from "react";
@@ -11,8 +11,8 @@ const FeatDataApp = () => {
                 try {
                     const response = await axios.get(setting.url);
                     const data = response.data;
-                    if(setting.key === 'key-main') {
-                        setDataMain(data);
+                    if (setting.key === mainStore) {
+                    setDataMain(data);
                     }
                     localStorage.setItem(setting.key, JSON.stringify(data));
                 } catch (error) {

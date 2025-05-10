@@ -11,7 +11,7 @@ export const useStoreApp = create<StoreApp1State>()(
     {
       name: mainStore,
       storage: typeof window !== "undefined" ? createJSONStorage(() => localStorage) : undefined,
-      // skipHydration: true,
+      skipHydration: true,
     }
   ) as any
 );

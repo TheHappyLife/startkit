@@ -6,7 +6,7 @@ export const Settings = [
   },
   {
     key: "key-app1",
-    url: "https://dogapi.dog/api/v2/breeds",
+    url: "https://dog.ceo/api/breeds/image/random",
     link: "/app-1",
   },
   {
@@ -17,3 +17,4 @@ export const Settings = [
 ];
 
 export const mainStore = Settings.find((setting) => setting.key === "key-main")?.key as string;
+export const mainStoreApp1 = Settings.find((setting) => setting.key === "key-app1")?.key as string;

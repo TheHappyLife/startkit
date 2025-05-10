@@ -3,8 +3,12 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: "/:path*",
+        destination: "/:path*",
+      },
+      {
         source: `/${process.env.NEXT_NAME_APP_1}/:path*`,
-        destination: `${process.env.NEXT_DOMAIN_MODULE_1}/${process.env.NEXT_NAME_APP_1}:path*`,
+        destination: `${process.env.NEXT_DOMAIN_MODULE_1}/${process.env.NEXT_NAME_APP_1}/:path*`,
       },
       //         {
       //   ... ? ... tương tự zone trên
