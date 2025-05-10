@@ -1,17 +1,17 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { StoreApp1State } from "./type";
-import { nameStore1 } from "@/SettingApp";
-export const useStoreApp1 = create<StoreApp1State>()(
+import { mainStore } from "@/SettingApp";
+export const useStoreApp = create<StoreApp1State>()(
   persist(
     (set) => ({
-      data1: null,
-      setData1: (data1: any) => set({ data1 }),
+      dataMain: null,
+      setDataMain: (dataMain: any) => set({ dataMain }),
     }),
     {
-      name: nameStore1,
+      name: mainStore,
       storage: typeof window !== "undefined" ? createJSONStorage(() => localStorage) : undefined,
-      skipHydration: true,
+      // skipHydration: true,
     }
   ) as any
 );
