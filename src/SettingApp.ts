@@ -16,4 +16,4 @@ export const Settings = [
   },
 ];
 
-export const mainStore = Settings.find((setting) => setting.key === "key-main")?.key as string;
+export const mainStore = Settings.find((setting) => setting.key === "key-app1")?.key as string;

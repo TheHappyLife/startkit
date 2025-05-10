@@ -11,7 +11,7 @@ const FeatDataApp = () => {
                 try {
                     const response = await axios.get(setting.url);
                     const data = response.data;
-                    if(setting.key === 'key-main') {
+                    if(setting.key === 'key-app1') {
                         setDataMain(data);
                     }
                     localStorage.setItem(setting.key, JSON.stringify(data));
