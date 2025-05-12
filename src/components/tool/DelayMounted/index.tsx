@@ -9,6 +9,7 @@ function DelayMounted({ children, delay = 1000 }: DelayMountedPropsType) {
     setTimeout(() => {
       setAllowMount(true);
     }, delay);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <>{allowMount && children}</>;

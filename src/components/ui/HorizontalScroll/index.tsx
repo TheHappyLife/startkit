@@ -40,6 +40,7 @@ function HorizontalScroll({ children, className }: HorizontalScrollPropsType) {
       onMouseDown={handleMouseDown}
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onMouseMove={handleMouseMove as any}
       onTouchMove={(e: TouchEvent<HTMLDivElement>) => e.stopPropagation()}
       style={{
