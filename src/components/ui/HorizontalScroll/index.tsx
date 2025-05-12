@@ -1,5 +1,5 @@
 "use client";
-import { GeneralProps } from "@/types/ui";
+import { GeneralProps } from "@/types/ui.general.type";
 import clsx from "clsx";
 import { TouchEvent, useRef } from "react";
 interface HorizontalScrollPropsType extends GeneralProps {}

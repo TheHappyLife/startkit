@@ -1,4 +1,4 @@
-import { UnknownFunction } from "../../../types/ui";
+import { UnknownFunction } from "../../../types/ui.general.type";
 import { Box, Drawer, SwipeableDrawer, SwipeableDrawerProps } from "@mui/material";
 import { forwardRef, ReactEventHandler, useImperativeHandle, useMemo, useState } from "react";
 

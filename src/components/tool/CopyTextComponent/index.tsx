@@ -1,9 +1,9 @@
 import { useState } from "react";
 import clsx from "clsx";
-import { GeneralProps } from "@/types/ui";
-import getIcon from "@/utils/getIcon";
+import { GeneralProps } from "@/types/ui.general.type";
 import Icon from "../../ui/Icon";
 import cn from "@/utils/cn";
+import useAssets from "@/hooks/useAssets";
 
 interface CopyTextComponentProps extends GeneralProps {
   value: string;
@@ -18,6 +18,7 @@ const CopyTextComponent = ({
   children,
   hideTextMessage,
 }: CopyTextComponentProps) => {
+  const { getIcon } = useAssets();
   const [showSuccess, setShowSuccess] = useState(false);
 
   const CopyTextComponent = async () => {

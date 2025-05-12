@@ -1,8 +1,8 @@
 import cn from "@/utils/cn";
-import { GeneralProps } from "@/types/ui";
-import getImage from "@/utils/getImage";
+import { GeneralProps } from "@/types/ui.general.type";
 import ModalTitle from "../ModalTitle";
 import CloseModal from "../CloseModal";
+import useAssets from "@/hooks/useAssets";
 interface ModalLayoutProps extends GeneralProps {
   title?: string;
   onClose?: () => void;
@@ -10,6 +10,8 @@ interface ModalLayoutProps extends GeneralProps {
 }
 
 const ModalLayout = (props: ModalLayoutProps) => {
+  const { getImage } = useAssets();
+
   return (
     <div
       className={cn(

@@ -1,10 +1,10 @@
-import getIcon from "../../../utils/getIcon";
 import Icon from "../Icon";
 import { IconProps } from "../Icon";
-
+import useAssets from "@/hooks/useAssets";
 interface BackArrowProps extends IconProps {}
 
 const BackArrow = (props: BackArrowProps) => {
+  const { getIcon } = useAssets();
   const { ...rest } = props;
 
   return (

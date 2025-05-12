@@ -1,5 +1,5 @@
 import cn from "@/utils/cn";
-import { GeneralProps } from "@/types/ui";
+import { GeneralProps } from "@/types/ui.general.type";
 
 interface ChildPageLayoutProps extends GeneralProps {
   header?: React.ReactNode;

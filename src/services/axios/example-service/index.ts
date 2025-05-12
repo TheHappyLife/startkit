@@ -1,4 +1,4 @@
-import userClientRequest from "../userClientRequest";
+import userClientRequest from "../clients/userClientRequest";
 import { ExampleServiceData, ExampleServiceResponse } from "./type";
 
 export default function exampleService(data: ExampleServiceData): Promise<ExampleServiceResponse> {

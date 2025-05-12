@@ -1,5 +1,5 @@
 import cn from "@/utils/cn";
-import { GeneralProps } from "@/types/ui";
+import { GeneralProps } from "@/types/ui.general.type";
 import { forwardRef } from "react";
 interface FormatterProps extends GeneralProps {
   value?: number;

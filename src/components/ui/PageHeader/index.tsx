@@ -1,6 +1,6 @@
 "use client";
 import cn from "@/utils/cn";
-import { GeneralProps } from "@/types/ui";
+import { GeneralProps } from "@/types/ui.general.type";
 import BackHeader from "../BackHeader";
 import Text from "../Text";
 

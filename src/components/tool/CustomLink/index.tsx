@@ -1,6 +1,6 @@
 import cn from "@/utils/cn";
 import Link from "next/link";
-import { GeneralProps } from "@/types/ui";
+import { GeneralProps } from "@/types/ui.general.type";
 import { useMemo } from "react";
 interface CustomLinkProps extends GeneralProps {
   className?: string;

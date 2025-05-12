@@ -1,6 +1,6 @@
 "use client";
 import cn from "@/utils/cn";
-import { GeneralProps, UnknownFunction } from "@/types/ui";
+import { GeneralProps, UnknownFunction } from "@/types/ui.general.type";
 import BackArrow from "../BackArrow";
 import useCustomRouter from "@/hooks/useCustomRouter";
 

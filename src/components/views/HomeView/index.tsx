@@ -1,7 +1,6 @@
 "use client";
 import cn from "@/utils/cn";
-import { GeneralProps } from "@/types/ui";
-import DefaultPageLayout from "@/components/layouts/DefaultPageLayout";
+import { GeneralProps } from "@/types/ui.general.type";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
@@ -11,7 +10,7 @@ const HomeView = (props: HomeViewProps) => {
   const t = useTranslations("HomePage");
 
   return (
-    <DefaultPageLayout className={cn("flex flex-col gap-4 pb-bottom-page", props.className)}>
+    <div className={cn("flex flex-col gap-4 pb-bottom-page", props.className)}>
       <div className="text-white font-500 text-lg">{t("title")}</div>
       <div className="text-white font-500 text-lg">
         {t("random package", { count: Math.floor(Math.random() * 3) })}
@@ -28,7 +27,7 @@ const HomeView = (props: HomeViewProps) => {
           ),
         })}
       </div>
-    </DefaultPageLayout>
+    </div>
   );
 };
 export default HomeView;

@@ -1,7 +1,7 @@
 import cn from "@/utils/cn";
 import { Swiper, SwiperProps, SwiperRef } from "swiper/react";
 import { Swiper as SwiperType } from "swiper/types";
-import { GeneralProps } from "@/types/ui";
+import { GeneralProps } from "@/types/ui.general.type";
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import "swiper/css";
 import { Tabs } from "@mui/material";

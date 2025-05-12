@@ -1,4 +1,4 @@
-import { GeneralProps } from "@/types/ui";
+import { GeneralProps } from "@/types/ui.general.type";
 import { useEffect, useState } from "react";
 interface DelayMountedPropsType extends GeneralProps {
   delay?: number;

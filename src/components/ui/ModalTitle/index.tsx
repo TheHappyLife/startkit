@@ -1,6 +1,6 @@
 import cn from "@/utils/cn";
 import Text from "../Text";
-import { GeneralProps } from "@/types/ui";
+import { GeneralProps } from "@/types/ui.general.type";
 interface ModalTitleProps extends GeneralProps {}
 
 const ModalTitle = (props: ModalTitleProps) => {

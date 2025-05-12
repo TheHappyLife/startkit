@@ -11,10 +11,10 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#60D591", // example | use: text-primary, border-primary, bg-primary...
+          DEFAULT: "#60D591",
         },
         secondary: {
-          DEFAULT: "#01FFFF", // example | use: text-secondary, border-secondary, bg-secondary...
+          DEFAULT: "#01FFFF",
         },
         ui: {
           text: {
