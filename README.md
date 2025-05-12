@@ -46,8 +46,8 @@ src/
 1. Clone dự án:
 
 ```bash
-git clone [repository-url]
-cd [project-name]
+git clone https://github.com/TheHappyLife/startkit/tree/simple
+cd startkit
 ```
 
 2. Cài đặt dependencies:
@@ -462,7 +462,3 @@ src/
 3. Commit thay đổi (`git commit -m 'Add some AmazingFeature'`)
 4. Push lên branch (`git push origin feature/AmazingFeature`)
 5. Tạo Pull Request
-
-## License
-
-[MIT License](LICENSE)
