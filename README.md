@@ -153,7 +153,7 @@ Components công cụ đơn giản:
 
 #### Functions (`components/functions/`)
 
-Components thực hiện chức năng phức tạp cho một module cụ thể, ví dụ:
+Components thực hiện chức năng phức tạp cho một module cụ thể.
 
 #### UI Components (`components/ui/`)
 
@@ -250,15 +250,19 @@ Hook xử lý hiệu ứng rung cho mobile devices:
 
 Hook quản lý và tối ưu hóa assets (hình ảnh, fonts, etc.):
 
-### Sử dụng getIcon, getImage để định nghĩa src cho icon và image
+- Quản lý tập trung các assets của ứng dụng
+- Tối ưu hóa việc tải và sử dụng assets
+- Cung cấp các helper function để truy cập assets
+
+##### Sử dụng getIcon, getImage để định nghĩa src cho icon và image
 
 Để sử dụng icon và image trong ứng dụng, bạn cần import hook `useAssets`:
 
 ```typescript
-import { useAssets } from '@/hooks/useAssets';
+import useAssets from '@/hooks/useAssets';
 
 // Sử dụng hook để lấy các helper function
-const { getIcon, getImage } = useAssets();
+const { getIcon, getImage, getVideo, getAudio } = useAssets();
 
 // Sử dụng với component Icon
 <Icon
@@ -271,12 +275,24 @@ const { getIcon, getImage } = useAssets();
   src={getImage("image_name")}
   alt="Image description"
 />
+
+// Sử dụng với component Video
+<video src={getVideo("video_name")} />
+
+// Sử dụng với component Audio
+<audio src={getAudio("audio_name")} />
 ```
 
 **Lưu ý:**
 
-- Đặt tên icon/image theo quy tắc đã được định nghĩa trong assets
-- Các helper function tương tự: `getIcon()`, `getImage()`, v.v...
+- Các assets được lưu trữ trong thư mục `public/` với cấu trúc:
+  - Icons: `/public/svg/`
+  - Images: `/public/images/`
+  - Videos: `/public/videos/`
+  - Audios: `/public/audios/`
+- Các helper function tương tự: `getIcon()`, `getImage()`, `getVideo()`, `getAudio()`
+- Mặc định fileType là "svg" cho icons, "png" cho images, "mp4" cho videos, "mp3" cho audios
+- Có thể chỉ định fileType khác nếu cần: `getIcon("icon_name", "png")`
 
 #### useFormatter
 
@@ -289,7 +305,29 @@ Hook định dạng dữ liệu (số, ngày tháng, tiền tệ):
 
 ### 5. Internationalization (i18n)
 
-Dự án hỗ trợ đa ngôn ngữ thông qua thư mục `messages/`. Các file ngôn ngữ được tổ chức theo quốc gia/ngôn ngữ.
+```
+messages/
+├── en.json            # Tiếng Anh
+├── vi.json             # Tiếng Việt
+└── ...
+```
+
+#### Sử dụng i18n trong code
+
+```typescript
+import { useTranslation } from 'react-i18next';
+
+const MyComponent = () => {
+  const { t } = useTranslation('common');
+
+  return (
+    <div>
+      <Text>{t('welcome')}</Text>
+      <Text>{t('home.title')}</Text>
+    </div>
+  );
+};
+```
 
 ### 6. Types (`src/types/`) và Constants (`src/const/`)
 
@@ -332,29 +370,89 @@ Thư mục chứa các hằng số được sử dụng trong toàn bộ ứng d
 
 ### 7. Function
 
-Là nơi định nghĩa các functions dùng chung cho nhiều chức năng khác
-Ví dụ:
+Là nơi định nghĩa các functions dùng chung cho nhiều chức năng khác trong ứng dụng.
 
-- compactText: Rút gọn chuỗi để hiển thị ra giao diện
-  const compactedText = compactText("UQCe-ibsR6vG3uv_bmD73q7NUhh9sy4lydoopHunsM9sWeol")
-  console.log(compactedText) // UQC...eol
+#### Các functions tiêu biểu
+
+**compactText**: Rút gọn chuỗi để hiển thị ra giao diện
+
+```typescript
+import { compactText } from "@/functions/compactText";
+
+// Sử dụng
+const longText = "UQCe-ibsR6vG3uv_bmD73q7NUhh9sy4lydoopHunsM9sWeol";
+const compactedText = compactText(longText);
+console.log(compactedText); // UQC...eol
+```
 
 ## Quy tắc phát triển
 
-### 1. Code Style
+### 1. Cấu trúc của một component, function... nói chung
+
+#### Cấu trúc chuẩn cho một thư mục
+
+```
+[Tên thư mục]/
+├── index.ts        # File code chính
+├── types.ts        # Types định nghĩa riêng (nếu cần)
+└── functions/      # Thư mục chứa các function riêng
+    ├── index.ts
+    ├── types.ts
+    └── ...
+```
+
+**Quy tắc đặt tên:**
+
+- Tên thư mục phải mô tả rõ chức năng của đối tượng (component/function)
+- Sử dụng PascalCase cho tên component
+- Sử dụng camelCase cho tên function
+
+#### Cấu trúc file
+
+**index.ts**
+
+- File chính chứa code của component/function
+- Export các thành phần cần thiết
+- Có thể chứa types đơn giản (nếu ít)
+
+**types.ts**
+
+- Chứa các types phức tạp hoặc được sử dụng nhiều
+- Không bắt buộc nếu types đơn giản
+- Có thể định nghĩa chung trong file index
+
+#### Thư mục functions con
+
+- Chứa các function chỉ dùng riêng cho component/function hiện tại
+- Không nên đặt trong thư mục functions chung của dự án
+- Tuân thủ cấu trúc tương tự như thư mục cha
+
+#### Trường hợp đơn giản
+
+Nếu component/function đơn giản (chỉ có một file), có thể đặt trực tiếp:
+
+```
+src/
+├── components/
+│   └── Button.tsx
+└── functions/
+    └── compactText.ts
+```
+
+### 2. Code Style
 
 - Sử dụng TypeScript cho type safety
 - Tuân thủ cấu trúc thư mục đã định nghĩa
 - Sử dụng ESLint và Prettier để format code
 
-### 2. Git Workflow
+### 3. Git Workflow
 
 - Tạo branch mới cho mỗi feature
 - Commit message phải tuân thủ commitlint
 - Code review trước khi merge
 - Sử dụng Husky để kiểm tra code trước khi commit
 
-### 3. Best Practices
+### 4. Best Practices
 
 - Sử dụng các custom hooks để tái sử dụng logic
 - Quản lý state thông qua store
