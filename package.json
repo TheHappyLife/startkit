@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write . && eslint --fix --ignore-pattern .next --ignore-pattern node_modules",
-    "update": "npm cache clean --force && npm i tek-wallet@latest --legacy-peer-deps && npm run dev"
+    "prepare": "husky"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -18,13 +18,15 @@
     "@reduxjs/toolkit": "^2.6.1",
     "axios": "^1.8.2",
     "clsx": "^2.1.1",
+    "env-cmd": "^10.1.0",
     "highcharts": "11.4.8",
     "highcharts-react-official": "3.2.1",
     "next": "15.1.7",
+    "next-intl": "^4.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
-    "tek-wallet": "^0.0.532"
+    "swiper": "^11.2.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

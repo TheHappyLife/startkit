@@ -3,26 +3,31 @@ import "./globals.css";
 import ReduxToolkitProvider from "@/store/Provider";
 import GeneralLayout from "@/components/layouts/GeneralLayout";
 import MuiThemeProvider from "@/theme/mui";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
-  title: "Fortune Vault - Secure & Smart Wealth Management",
-  description:
-    "Fortune Vault is your ultimate platform for protecting, managing, and optimizing your assets with top-tier security. Store cryptocurrencies, important documents, and financial information with confidence. Unlock your financial future today! 🚀🔐",
+  title: "Start kit",
+  description: "Start kit",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={"antialiased"}>
-        <ReduxToolkitProvider>
-          <MuiThemeProvider>
-            <GeneralLayout>{children}</GeneralLayout>
-          </MuiThemeProvider>
-        </ReduxToolkitProvider>
+        <NextIntlClientProvider>
+          <ReduxToolkitProvider>
+            <MuiThemeProvider>
+              <GeneralLayout>{children}</GeneralLayout>
+            </MuiThemeProvider>
+          </ReduxToolkitProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

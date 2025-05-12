@@ -1,0 +1,8 @@
+{
+  "HomePage": {
+    "title": "Hello world! This is the best translation ever!",
+    "random package": "If the package are many then package have 's' character: {count} {count, plural, =0{package} one{package} other{packages}}",
+    "how to pay": "This is example html tag in translate ->>> <link>How to pay?</link> <<<- This is end of sentence",
+    "how to pay link": "/how-to-pay"
+  }
+}
