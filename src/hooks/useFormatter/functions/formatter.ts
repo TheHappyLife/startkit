@@ -39,9 +39,7 @@ const formatter = (
       const before = numberToString.slice(0, indexOfDecimalDot);
       const after = numberToString.slice(
         indexOfDecimalDot + 1,
-        indexOfDecimalDot +
-          1 +
-          (lengthAllowed - before?.length - 1 <= 1 ? 2 : lengthAllowed - before?.length - 1)
+        indexOfDecimalDot + 1 + (lengthAllowed - before?.length - 1 <= 1 ? 2 : lengthAllowed - before?.length - 1)
       );
       const beforeFormatted = before.replace(/\B(?=(\d{3})+(?!\d))/g, thousandsSeparator);
       const afterFormatted = Number(`0.${after}`)?.toString()?.replace("0.", "");

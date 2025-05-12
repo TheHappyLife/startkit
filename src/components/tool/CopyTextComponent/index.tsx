@@ -11,13 +11,7 @@ interface CopyTextComponentProps extends GeneralProps {
   hideTextMessage?: boolean;
 }
 
-const CopyTextComponent = ({
-  value,
-  className,
-  iconSuccess,
-  children,
-  hideTextMessage,
-}: CopyTextComponentProps) => {
+const CopyTextComponent = ({ value, className, iconSuccess, children, hideTextMessage }: CopyTextComponentProps) => {
   const { getIcon } = useAssets();
   const [showSuccess, setShowSuccess] = useState(false);
 

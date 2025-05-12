@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ReduxToolkitProvider from "@/store/Provider";
-import GeneralLayout from "@/components/layouts/GeneralLayout";
 import MuiThemeProvider from "@/theme/mui";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
@@ -22,11 +20,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={"antialiased"}>
         <NextIntlClientProvider>
-          <ReduxToolkitProvider>
-            <MuiThemeProvider>
-              <GeneralLayout>{children}</GeneralLayout>
-            </MuiThemeProvider>
-          </ReduxToolkitProvider>
+          <MuiThemeProvider>{children}</MuiThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -6,6 +6,8 @@ interface FormatterProps extends GeneralProps {
 }
 
 const Formatter = forwardRef<HTMLDivElement, FormatterProps>((props: FormatterProps, ref) => {
+  //add format logic
+
   return (
     <div ref={ref} className={cn(props.className)}>
       {props.value}

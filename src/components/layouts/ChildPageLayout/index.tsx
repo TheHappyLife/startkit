@@ -13,12 +13,7 @@ const ChildPageLayout = (props: ChildPageLayoutProps) => {
   return (
     <div className={cn("h-full w-full", props.className)}>
       {header && <div className="h-[3.125rem] w-full absolute top-0 left-0 z-50">{header}</div>}
-      <div
-        className={cn(
-          "h-full w-full overflow-x-hidden overflow-y-auto",
-          header && !fullScreen && "pt-[3.125rem]"
-        )}
-      >
+      <div className={cn("h-full w-full overflow-x-hidden overflow-y-auto", header && !fullScreen && "pt-[3.125rem]")}>
         {children}
       </div>
       {footer && <div className="h-12 w-full absolute bottom-0 left-0 z-50">{footer}</div>}

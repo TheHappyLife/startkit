@@ -12,9 +12,7 @@ const HomeView = (props: HomeViewProps) => {
   return (
     <div className={cn("flex flex-col gap-4 pb-bottom-page", props.className)}>
       <div className="text-white font-500 text-lg">{t("title")}</div>
-      <div className="text-white font-500 text-lg">
-        {t("random package", { count: Math.floor(Math.random() * 3) })}
-      </div>
+      <div className="text-white font-500 text-lg">{t("random package", { count: Math.floor(Math.random() * 3) })}</div>
       <div className="text-white font-500 text-lg">
         {t.rich("how to pay", {
           link: (chunks) => (

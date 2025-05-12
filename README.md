@@ -9,7 +9,6 @@
 - **Next.js**: Framework React cho phát triển web
 - **TypeScript**: Ngôn ngữ lập trình type-safe
 - **Tailwind CSS**: Framework CSS utility-first
-- **Redux**: State management library
 - **Axios**: Thư viện HTTP client
 - **ESLint & Prettier**: Công cụ linting và formatting code
 - **Husky**: Git hooks
@@ -26,7 +25,6 @@ src/
 │   ├── views/       # Components cho từng view
 │   └── functions/   # Components chứa logic
 ├── services/        # API services và clients
-├── store/           # State management
 ├── hooks/           # Custom React hooks
 ├── utils/           # Utility functions
 ├── types/           # TypeScript type definitions
@@ -130,7 +128,7 @@ Dự án sử dụng App Router của Next.js 13+. Các routes được định 
 
 Components được tổ chức theo module với mục đích và cách sử dụng cụ thể:
 
-#### Layouts (`components/layouts/`)
+#### Layouts (`components/layouts/`),
 
 - **MainLayout**: Layout chính cho các trang có navigation bar ở dưới cùng, thường dùng cho các trang chính của ứng dụng
 - **ChildPageLayout**: Layout cho các trang con, có header và nút back, thường dùng cho các trang chi tiết hoặc form
@@ -159,22 +157,12 @@ Components thực hiện chức năng phức tạp cho một module cụ thể.
 
 Các components UI cơ bản được sử dụng xuyên suốt ứng dụng:
 
-- **BackArrow**: Component hiển thị nút quay lại với icon mũi tên
-- **BackHeader**: Component header có nút quay lại, thường dùng cho các trang con
 - **Button**: Component nút bấm với nhiều kiểu dáng và trạng thái
 - **CheckBox**: Component checkbox cho lựa chọn đơn
-- **CircularProgressComponent**: Component hiển thị loading dạng vòng tròn
-- **CloseModal**: Component nút đóng modal
-- **DrawerComponent**: Component drawer menu, kết hợp với ModalLayout để tạo modal
 - **Formatter**: Component định dạng dữ liệu số
 - **HorizontalScroll**: Component cho phép scroll ngang
 - **Icon**: Component hiển thị icon
 - **Image**: Component hiển thị hình ảnh
-- **Input**: Component input layout
-- **ModalLayout**: Component layout cho modal
-- **ModalTitle**: Component tiêu đề cho modal
-- **PageHeader**: Component header cho trang
-- **SwiperControlled**: Component slider/carousel có thể điều khiển
 - **Text**: Component hiển thị text với các style khác nhau
 
 > ⚠️ **Lưu ý quan trọng về việc sử dụng Components:**
