@@ -48,8 +48,8 @@ src/
 1. Clone dự án:
 
 ```bash
-git clone [repository-url]
-cd [project-name]
+git clone https://github.com/TheHappyLife/startkit/tree/full/redux-toolkit
+cd startkit
 ```
 
 2. Cài đặt dependencies:
@@ -165,6 +165,7 @@ Các components UI cơ bản được sử dụng xuyên suốt ứng dụng:
 - **CheckBox**: Component checkbox cho lựa chọn đơn
 - **CircularProgressComponent**: Component hiển thị loading dạng vòng tròn
 - **CloseModal**: Component nút đóng modal
+- **DelayMounted**: Component delay việc mount children của nó, thường dùng để bọc các component có logic hoặc ui nặng, giúp tránh giật lag khi khởi tạo một page
 - **DrawerComponent**: Component drawer menu, kết hợp với ModalLayout để tạo modal
 - **Formatter**: Component định dạng dữ liệu số
 - **HorizontalScroll**: Component cho phép scroll ngang
@@ -474,7 +475,3 @@ src/
 3. Commit thay đổi (`git commit -m 'Add some AmazingFeature'`)
 4. Push lên branch (`git push origin feature/AmazingFeature`)
 5. Tạo Pull Request
-
-## License
-
-[MIT License](LICENSE)
