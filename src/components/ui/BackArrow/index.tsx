@@ -1,3 +1,4 @@
+import cn from "@/utils/cn";
 import Icon from "../Icon";
 import { IconProps } from "../Icon";
 import useAssets from "@/hooks/useAssets";
@@ -9,6 +10,7 @@ const BackArrow = (props: BackArrowProps) => {
 
   return (
     <Icon
+      className={cn(props.className)}
       src={getIcon("arrow_back")}
       width={24}
       sx={{
