@@ -3,14 +3,12 @@ import cn from "@/utils/cn";
 import { GeneralProps } from "@/types/ui.general.type";
 import useAssets from "@/hooks/useAssets";
 import { signIn, useSession } from "next-auth/react";
-import { RootState } from "@/store/store";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import { REFRESH_TOKEN_STATUS } from "@/app/api/auth/[...nextauth]/type";
-import { setIsLoggedIn } from "@/store/user/userSlice";
 import { PRE_EXPIRED_TIME } from "@/app/api/auth/[...nextauth]/const";
 import { Backdrop } from "@mui/material";
 import CircularProgressComponent from "@/components/ui/CircularProgressComponent";
+import useUserStore from "@/store/user";
 export enum AUTH_STATUS {
   LOADING = "loading",
   UNAUTHENTICATED = "unauthenticated",
@@ -20,19 +18,23 @@ interface AuthLayoutProps extends GeneralProps {}
 
 const AuthLayout = (props: AuthLayoutProps) => {
   const { getImage } = useAssets();
-  const dispatch = useDispatch();
   const { data: session, status, update } = useSession();
-  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
+  const setIsLoggedIn = useUserStore((state) => state.setIsLoggedIn);
   const timeout = useRef<NodeJS.Timeout | undefined>(undefined);
   useEffect(() => {
     if (status === AUTH_STATUS.UNAUTHENTICATED || session?.error === REFRESH_TOKEN_STATUS.FAILED) {
+      setIsLoggedIn(false);
       signIn("keycloak");
 
       return;
     }
     if (status === AUTH_STATUS.AUTHENTICATED && session?.accessToken) {
-      dispatch(setIsLoggedIn(true));
+      setIsLoggedIn(true);
+
+      return;
     }
+    setIsLoggedIn(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, session?.accessToken, session?.error]);
 

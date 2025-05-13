@@ -9,7 +9,7 @@
 - **Next.js**: Framework React cho phát triển web
 - **TypeScript**: Ngôn ngữ lập trình type-safe
 - **Tailwind CSS**: Framework CSS utility-first
-- **Redux**: State management library
+- **Zustand**: State management library
 - **Axios**: Thư viện HTTP client
 - **ESLint & Prettier**: Công cụ linting và formatting code
 - **Husky**: Git hooks
@@ -385,6 +385,84 @@ const longText = "UQCe-ibsR6vG3uv_bmD73q7NUhh9sy4lydoopHunsM9sWeol";
 const compactedText = compactText(longText);
 console.log(compactedText); // UQC...eol
 ```
+
+### 8. State Management với Zustand
+
+Dự án sử dụng Zustand để quản lý state. Để tối ưu việc render và tránh re-render không cần thiết, cần tuân thủ các quy tắc sau khi sử dụng store:
+
+#### Quy tắc lấy state
+
+**Cách tốt nhất (Khuyến nghị):**
+
+```typescript
+// ✅ NÊN: Chỉ lấy các state và actions cần thiết
+const isLoggedIn = useUserStore((state) => state.isLoggedIn);
+const logout = useUserStore((state) => state.logout);
+```
+
+**Cách không khuyến nghị:**
+
+```typescript
+// ❌ KHÔNG NÊN: Lấy toàn bộ state
+const { isLoggedIn, setIsLoggedIn, user, setUser, logout } = useUserStore();
+```
+
+**Lý do:**
+
+- Chỉ lấy các state và actions cần thiết giúp tối ưu việc render
+- Tránh re-render không cần thiết khi các state khác thay đổi
+- Code dễ đọc và dễ bảo trì hơn
+
+#### Quy tắc chia store
+
+**Cách tốt nhất (Khuyến nghị):**
+
+```typescript
+// ✅ NÊN: Chia store theo chức năng
+// store/user/index.ts
+export const useUserStore = create<UserState>((set) => ({
+  isLoggedIn: false,
+  user: null,
+  setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
+  setUser: (user) => set({ user }),
+  logout: () => set({ isLoggedIn: false, user: null }),
+}));
+
+// store/cart/index.ts
+export const useCartStore = create<CartState>((set) => ({
+  items: [],
+  addItem: (item) => set((state) => ({ items: [...state.items, item] })),
+  removeItem: (id) => set((state) => ({ items: state.items.filter((item) => item.id !== id) })),
+}));
+```
+
+**Cách không khuyến nghị:**
+
+```typescript
+// ❌ KHÔNG NÊN: Gom tất cả state vào một store
+export const useStore = create<Store>((set) => ({
+  // User state
+  isLoggedIn: false,
+  user: null,
+  setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
+  setUser: (user) => set({ user }),
+  logout: () => set({ isLoggedIn: false, user: null }),
+
+  // Cart state
+  items: [],
+  addItem: (item) => set((state) => ({ items: [...state.items, item] })),
+  removeItem: (id) => set((state) => ({ items: state.items.filter((item) => item.id !== id) })),
+
+  // Other states...
+}));
+```
+
+**Lý do:**
+
+- Mỗi store nên quản lý một domain cụ thể
+- Dễ dàng tái sử dụng và bảo trì
+- Tránh re-render không cần thiết khi state của domain khác thay đổi
+- Code dễ đọc và dễ hiểu hơn
 
 ## Quy tắc phát triển
 
