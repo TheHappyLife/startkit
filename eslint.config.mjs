@@ -21,6 +21,8 @@ const eslintConfig = [
       "@typescript-eslint/no-explicit-any": "warn",
       "no-multiple-empty-lines": ["error", { max: 1, maxEOF: 1 }],
       "jsx-a11y/alt-text": "off",
+      "no-unused-expressions": "off",
+      "@typescript-eslint/no-unused-expressions": "off",
       "@typescript-eslint/no-empty-object-type": "off",
       "padding-line-between-statements": [
         "error",
