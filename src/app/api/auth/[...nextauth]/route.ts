@@ -26,6 +26,11 @@ const handler = NextAuth({
           token.refreshToken = account.refresh_token;
           token.refreshTokenExpires =
             +(account.refresh_expires_in || (account.expires_at ?? 120)) * 1000;
+          console.warn(
+            "🚀 ~ jwt ~ token.refreshTokenExpires:",
+            token.refreshTokenExpires,
+            (account.expires_at ?? 120) * 1000
+          );
           token.expires = (account.expires_at ?? 0) * 1000 || now + 120000; // default 120 seconds
         }
         //If the access token is not expired, return it
@@ -36,6 +41,12 @@ const handler = NextAuth({
         }
         //If the refresh token expired
         if (isExpired(+(token?.refreshTokenExpires ?? 0))) {
+          console.warn(
+            "🚀 ~ jwt ~ isExpired(+(token?.refreshTokenExpires ?? 0)):",
+            isExpired(+(token?.refreshTokenExpires ?? 0)),
+            token?.refreshTokenExpires
+          );
+
           token.error = REFRESH_TOKEN_STATUS.FAILED;
 
           return token;
@@ -47,6 +58,7 @@ const handler = NextAuth({
             throw new Error("Refresh token is not found");
           }
           const refreshedTokens = await refreshToken(theRefreshToken);
+          console.warn("🚀 ~ jwt ~ refreshedTokens:", refreshedTokens);
           if (refreshedTokens.status === REFRESH_TOKEN_STATUS.SUCCESS) {
             const data = refreshedTokens.data;
             const now = Date.now();
@@ -78,6 +90,22 @@ const handler = NextAuth({
         session.error = token.error;
         session.refreshTokenExpires = token.refreshTokenExpires;
       }
+
+      /**
+       * CHECK SUB AFF
+       *  Giải access token để lấy thông tin user id
+       * Lấy thông tin sub affiliate từ cookie:
+       *  1. Nếu có thông tin và đúng là user này đã sub aff rồi => return session có status đã sub aff (session.hasSubAff = true)
+       *  2. Nếu không có thông tin, thì gọi api check sub aff:
+       *    2.1 Nếu đã sub aff thì lưu thông tin user và trạng thái đã sub aff vào cookie và return session có status đã sub aff (session.hasSubAff = true)
+       *    2.2 Nếu chưa sub aff thì return session vẫn nguyên với status chưa sub aff (session.hasSubAff = false)
+       */
+
+      /**
+       * XỬ LÍ ĐIỀU HƯỚNG Ở AUTHLAYOUT
+       * 1. Nếu chưa sub aff thì điều hướng đến zone Onboard
+       * 2. Nếu đã sub aff thì thực hiện những việc của zone hiện tại, đồng thời gọi ngầm api check xem đã có sub aff hay chưa lần nữa, nếu chưa thì ...
+       */
 
       return session;
     },

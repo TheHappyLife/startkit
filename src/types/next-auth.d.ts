@@ -5,6 +5,7 @@ declare module "next-auth" {
     accessToken?: string;
     refreshToken?: string;
     error?: string;
+    subAffiliateStatus?: boolean;
     user: {
       id?: string;
       name?: string;

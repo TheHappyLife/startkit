@@ -1,3 +1,5 @@
+import useAssetsStore from "@/store/assets";
+
 type GetAsset = (name: string, fileType?: string) => string;
 
 interface UseAssetsType {
@@ -8,8 +10,12 @@ interface UseAssetsType {
 }
 
 function useAssets(): UseAssetsType {
+  const icons = useAssetsStore((state) => state.icons);
+
   const getIcon: GetAsset = (name, fileType) => {
-    return `/svg/${name}.${fileType || "svg"}`;
+    const url = icons?.[name];
+
+    return url || `/svg/${name}.${fileType || "svg"}`;
   };
 
   const getImage: GetAsset = (name, fileType) => {

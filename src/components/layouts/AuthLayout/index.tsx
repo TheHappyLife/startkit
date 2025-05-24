@@ -24,25 +24,28 @@ const AuthLayout = (props: AuthLayoutProps) => {
   const timeout = useRef<NodeJS.Timeout | undefined>(undefined);
   useEffect(() => {
     if (status === AUTH_STATUS.UNAUTHENTICATED || session?.error === REFRESH_TOKEN_STATUS.FAILED) {
+      console.warn("🚀 ~ useEffect ~ status AUTH_STATUS.UNAUTHENTICATED:", status, session?.error);
+
       setIsLoggedIn(false);
       signIn("keycloak");
 
       return;
     }
     if (status === AUTH_STATUS.AUTHENTICATED && session?.accessToken) {
+      console.warn("🚀 ~ useEffect ~ status AUTH_STATUS.AUTHENTICATED:", status);
       setIsLoggedIn(true);
 
       return;
     }
-    setIsLoggedIn(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status, session?.accessToken, session?.error]);
+  }, [status, session]);
 
   useEffect(() => {
     !!timeout.current && clearTimeout(timeout.current);
     const expiredTime = +(session?.expires ?? 0);
     const currentTime = Date.now();
     const timeDiff = Math.max(expiredTime - currentTime - PRE_EXPIRED_TIME, 0); //auto refresh token before PRE_EXPIRED_TIME = 40 seconds
+    console.warn("🚀 ~ useEffect ~ timeDiff:", timeDiff);
     timeout.current = setTimeout(() => {
       update();
     }, timeDiff);
@@ -69,6 +72,7 @@ const AuthLayout = (props: AuthLayoutProps) => {
           </Backdrop>
         )}
         {isLoggedIn && props.children}
+        {props.children}
       </main>
     </div>
   );
