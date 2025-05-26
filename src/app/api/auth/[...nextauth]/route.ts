@@ -13,6 +13,7 @@ const handler = NextAuth({
       issuer: process.env.KEYCLOAK_ISSUER || "",
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
   },
