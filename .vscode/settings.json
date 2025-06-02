@@ -1,8 +1,4 @@
 {
-  "i18n-ally.localesPaths": [
-    "src/messages"
-  ],
-  "cSpell.words": [
-    "NEXTAUTH"
-  ]
+  "i18n-ally.localesPaths": ["src/messages"],
+  "cSpell.words": ["NEXTAUTH"]
 }

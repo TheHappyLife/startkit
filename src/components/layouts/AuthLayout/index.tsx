@@ -72,7 +72,6 @@ const AuthLayout = (props: AuthLayoutProps) => {
           </Backdrop>
         )}
         {isLoggedIn && props.children}
-        {props.children}
       </main>
     </div>
   );
