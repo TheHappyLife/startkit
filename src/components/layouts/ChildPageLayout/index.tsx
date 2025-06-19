@@ -1,29 +1,38 @@
 import cn from "@/utils/cn";
+import { forwardRef } from "react";
+import { Box } from "@mui/material";
 import { GeneralProps } from "@/types/ui.general.type";
 
 interface ChildPageLayoutProps extends GeneralProps {
   header?: React.ReactNode;
   footer?: React.ReactNode;
-  fullScreen?: boolean;
+  classNames?: {
+    footer?: string;
+    header?: string;
+    body?: string;
+  };
 }
 
-const ChildPageLayout = (props: ChildPageLayoutProps) => {
-  const { header, footer, fullScreen, children } = props;
+export interface ChildPageLayoutRef {
+  scrollToTop: (position: number) => void;
+}
 
-  return (
-    <div className={cn("h-full w-full", props.className)}>
-      {header && <div className="h-[3.125rem] w-full absolute top-0 left-0 z-50">{header}</div>}
-      <div
-        className={cn(
-          "h-full w-full overflow-x-hidden overflow-y-auto",
-          header && !fullScreen && "pt-[3.125rem]"
-        )}
-      >
-        {children}
-      </div>
-      {footer && <div className="h-12 w-full absolute bottom-0 left-0 z-50">{footer}</div>}
-    </div>
-  );
-};
+const ChildPageLayout = forwardRef<ChildPageLayoutRef, ChildPageLayoutProps>(
+  (props: ChildPageLayoutProps, ref) => {
+    const { header, footer, children, classNames, className } = props;
+
+    return (
+      <Box ref={ref} className={cn("h-full w-full grid grid-rows-[auto_1fr_auto]", className)}>
+        {header && <Box className={cn("w-full", classNames?.header)}>{header}</Box>}
+        <Box className={cn("h-full w-full overflow-x-hidden overflow-y-auto", classNames?.body)}>
+          {children}
+        </Box>
+        {footer && <Box className={cn("w-full", classNames?.footer)}>{footer}</Box>}
+      </Box>
+    );
+  }
+);
+
+ChildPageLayout.displayName = "ChildPageLayout";
 
 export default ChildPageLayout;
