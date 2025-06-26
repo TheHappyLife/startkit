@@ -23,11 +23,11 @@ const ChildPageLayout = forwardRef<ChildPageLayoutRef, ChildPageLayoutProps>(
 
     return (
       <Box ref={ref} className={cn("h-full w-full grid grid-rows-[auto_1fr_auto]", className)}>
-        {header && <Box className={cn("w-full", classNames?.header)}>{header}</Box>}
+        <Box className={cn("w-full", classNames?.header)}>{header}</Box>
         <Box className={cn("h-full w-full overflow-x-hidden overflow-y-auto", classNames?.body)}>
           {children}
         </Box>
-        {footer && <Box className={cn("w-full", classNames?.footer)}>{footer}</Box>}
+        <Box className={cn("w-full", classNames?.footer)}>{footer}</Box>
       </Box>
     );
   }
