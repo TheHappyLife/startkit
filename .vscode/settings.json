@@ -1,4 +1,10 @@
 {
-  "i18n-ally.localesPaths": ["src/messages"],
-  "cSpell.words": ["NEXTAUTH"]
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.eslint": true
+  },
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2
 }
