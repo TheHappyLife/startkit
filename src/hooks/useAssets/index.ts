@@ -15,7 +15,7 @@ function useAssets(): UseAssetsType {
   const getIcon: GetAsset = (name, fileType) => {
     const url = icons?.[name];
 
-    return url || `/svg/${name}.${fileType || "svg"}`;
+    return url || `/icons/${name}.${fileType || "svg"}`;
   };
 
   const getImage: GetAsset = (name, fileType) => {

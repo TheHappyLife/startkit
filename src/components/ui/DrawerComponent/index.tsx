@@ -5,6 +5,8 @@ import { forwardRef, ReactEventHandler, useImperativeHandle, useMemo, useState }
 export enum DRAWER_DIRECTION {
   LEFT = "left",
   RIGHT = "right",
+  TOP = "top",
+  BOTTOM = "bottom",
 }
 
 export interface DrawerComponentProps

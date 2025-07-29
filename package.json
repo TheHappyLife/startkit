@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "env-cmd -f .env.sandbox next dev",
+    "dev": "env-cmd -f .env.dev next dev",
+    "dev:sandbox": "env-cmd -f .env.sandbox next dev",
     "dev:stage": "env-cmd -f .env.stage next dev",
     "build": "next build",
     "start": "next start",

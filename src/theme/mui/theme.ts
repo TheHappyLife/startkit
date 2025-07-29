@@ -1,20 +1,15 @@
 import { createTheme } from "@mui/material/styles";
+import { typography } from "./typography";
+import { components } from "./components";
 
 const theme = createTheme({
-  colorSchemes: {
-    dark: true,
-    light: true,
-  },
-  palette: {
-    primary: {
-      main: "#ffff00",
-    },
-    secondary: {
-      main: "#01FF00",
-      light: "#01FF00",
-      dark: "#01FF00",
-      contrastText: "#01FF00",
-    },
+  palette: {},
+  typography,
+  cssVariables: true,
+  components,
+  zIndex: {
+    drawer: 20,
+    modal: 10,
   },
 });
 
