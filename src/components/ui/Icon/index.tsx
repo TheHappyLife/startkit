@@ -1,5 +1,8 @@
+"use client";
 import { Box, BoxProps, SxProps } from "@mui/material";
 import cn from "@/utils/cn";
+import useAssets from "@/hooks/useAssets";
+import { ReactEventHandler } from "react";
 export interface IconProps extends BoxProps {
   src?: string;
   alt?: string;
@@ -7,17 +10,26 @@ export interface IconProps extends BoxProps {
   height?: number;
   sx?: SxProps;
   className?: string;
+  keyString?: string;
+  onError?: () => void;
 }
 
 const Icon = (props: IconProps) => {
-  const { src, alt, onClick, width, height, sx, className, ...rest } = props;
+  const { src, alt, onClick, width, height, sx, className, keyString, onError, ...rest } = props;
+  const { getIcon } = useAssets();
+
+  const handleError: ReactEventHandler = (e) => {
+    (e.target as HTMLImageElement).src = getIcon(keyString ?? "");
+    onError?.();
+  };
 
   return (
     <Box
       component="img"
-      src={src}
+      src={src || getIcon(keyString ?? "")}
       alt={alt}
       onClick={onClick}
+      onError={handleError}
       className={cn(className)}
       {...rest}
       sx={{
